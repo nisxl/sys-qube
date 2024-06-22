@@ -7,13 +7,16 @@ This is a React-based e-commerce checkout flow application that includes a cart 
 ## Installation
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/react-ecommerce-checkout.git
+   git clone https://github.com/nisxl/sys-qube.git   
 
-2. Navigate to the project directory:
+3. Navigate to the project directory:
    cd sysqube-store
 
-3. Install React dependencies
+4. Install React dependencies
    npm install
 
-4. Start the Development Server
+5. Start the Development Server
    npm run dev
+
+#Hosted on
+[SysQubeNp - Website](https://sysqubenp-store.netlify.app/) or the link: https://sysqubenp-store.netlify.app/
