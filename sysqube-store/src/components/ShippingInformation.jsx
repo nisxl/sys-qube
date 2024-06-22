@@ -20,66 +20,84 @@ const ShippingInformation = ({
     setShippingInfo(form);
     onNext();
   };
-
+  console.log("form", form);
   return (
     <div>
-      <h2>Shipping Information</h2>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Full Name"
-          id="outlined-size-small"
-          size="small"
-          onChange={handleChange}
-          value={form.fullName}
-        />
+      <h2 className="text-2xl font-semibold mb-4">Shipping Information</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <div className="flex gap-2">
+          <TextField
+            name="fullName"
+            label="Full Name"
+            id="outlined-size-small"
+            size="small"
+            onChange={handleChange}
+            value={form.fullName}
+            fullWidth
+          />
 
-        <TextField
-          label="Address"
-          id="outlined-size-small"
-          size="small"
-          onChange={handleChange}
-          value={form.address}
-        />
+          <TextField
+            name="address"
+            label="Address"
+            id="outlined-size-small"
+            size="small"
+            onChange={handleChange}
+            value={form.address}
+            fullWidth
+          />
+        </div>
+        <div className="flex gap-2">
+          <TextField
+            name="city"
+            label="City"
+            id="outlined-size-small"
+            size="small"
+            onChange={handleChange}
+            value={form.city}
+            fullWidth
+          />
 
-        <TextField
-          label="City"
-          id="outlined-size-small"
-          size="small"
-          onChange={handleChange}
-          value={form.city}
-        />
+          <TextField
+            name="state"
+            label="State/Province"
+            id="outlined-size-small"
+            size="small"
+            onChange={handleChange}
+            value={form.state}
+            fullWidth
+          />
 
-        <TextField
-          label="State/Province"
-          id="outlined-size-small"
-          size="small"
-          onChange={handleChange}
-          value={form.state}
-        />
+          <TextField
+            name="zipCode"
+            label="Zip Code"
+            id="outlined-size-small"
+            size="small"
+            onChange={handleChange}
+            value={form.zipCode}
+            fullWidth
+          />
+        </div>
+        <div className="flex gap-2">
+          <TextField
+            name="country"
+            label="Country"
+            id="outlined-size-small"
+            size="small"
+            onChange={handleChange}
+            value={form.country}
+            fullWidth
+          />
 
-        <TextField
-          label="Zip Code"
-          id="outlined-size-small"
-          size="small"
-          onChange={handleChange}
-          value={form.zipCode}
-        />
-
-        <TextField
-          label="Country"
-          id="outlined-size-small"
-          size="small"
-          onChange={handleChange}
-          value={form.country}
-        />
-
-        <TextField
-          label="Phone Number"
-          id="outlined-size-small"
-          size="small"
-          onChange={handleChange}
-          value={form.phoneNumber}
-        />
+          <TextField
+            name="phoneNumber"
+            label="Phone Number"
+            id="outlined-size-small"
+            size="small"
+            onChange={handleChange}
+            value={form.phoneNumber}
+            fullWidth
+          />
+        </div>
 
         <button type="button" onClick={onPrev}>
           Back to Cart

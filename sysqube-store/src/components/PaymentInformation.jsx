@@ -3,15 +3,18 @@ import { TextField, Button, Typography } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import { InputLabel } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 const PaymentInformation = ({
   paymentInfo,
   onPrev,
   onNext,
   setPaymentInfo,
+  paymentMethod,
+  setPaymentMethod,
 }) => {
   const [form, setForm] = useState(paymentInfo);
-  const [paymentType, setPaymentType] = useState("card");
-
+  // const [paymentType, setPaymentType] = useState("card");
+  console.log("payment", form);
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -22,20 +25,22 @@ const PaymentInformation = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     setPaymentInfo(form);
+    console.log("loll", form);
     onNext();
   };
 
   const handleClick = (type) => {
-    setPaymentType(type);
+    // setPaymentType(type);
+    setPaymentMethod(type);
   };
 
   return (
     <div>
-      <h2>Payment Details</h2>
+      <h2 className="text-2xl font-semibold mb-4">Payment Details</h2>
       <div className="flex justify-center gap-6">
         <article
           className={`flex items-center w-52 justify-center py-2 border rounded-md cursor-pointer ${
-            paymentType === "card" ? "border-black bg-gray-100" : "border"
+            paymentMethod === "card" ? "border-black bg-gray-100" : "border"
           }`}
           onClick={() => handleClick("card")}
         >
@@ -44,9 +49,12 @@ const PaymentInformation = ({
           </span>
           <span>Card</span>
         </article>
+        {paymentMethod === "card" && (
+          <CheckCircleIcon className="ml-[-40px] mt-[-10px] " />
+        )}
         <article
           className={`flex w-52 items-center justify-center py-2 border rounded-md cursor-pointer ${
-            paymentType === "fonepay" ? "border-black bg-gray-100" : "border"
+            paymentMethod === "fonepay" ? "border-black bg-gray-100" : "border"
           }`}
           onClick={() => handleClick("fonepay")}
         >
@@ -55,10 +63,18 @@ const PaymentInformation = ({
           </span>
           <span>fonepay</span>
         </article>
+        {paymentMethod === "fonepay" && (
+          <CheckCircleIcon className="ml-[-40px] mt-[-10px]" />
+        )}
       </div>
-      {paymentType === "card" && (
+      {paymentMethod === "card" && (
         <form onSubmit={handleSubmit}>
-          <Typography variant="body1" gutterBottom align="left">
+          <Typography
+            variant="body1"
+            gutterBottom
+            align="left"
+            sx={{ fontSize: "15px", fontWeight: "600" }}
+          >
             Cardholder Name
           </Typography>
           <TextField
@@ -71,9 +87,14 @@ const PaymentInformation = ({
             required
             margin="none"
             size="small"
-            sx={{ marginBottom: "8px" }}
+            sx={{ marginBottom: "12px" }}
           />
-          <Typography variant="body1" gutterBottom align="left">
+          <Typography
+            variant="body1"
+            gutterBottom
+            align="left"
+            sx={{ fontSize: "15px", fontWeight: "600" }}
+          >
             Card Number
           </Typography>
           <TextField
@@ -86,11 +107,16 @@ const PaymentInformation = ({
             required
             margin="none"
             size="small"
-            sx={{ marginBottom: "8px" }}
+            sx={{ marginBottom: "12px" }}
           />
-          <div className="flex justify-around gap-2">
+          <div className="flex justify-around gap-2 mb-[12px]">
             <div className="w-full">
-              <Typography variant="body1" gutterBottom align="left">
+              <Typography
+                variant="body1"
+                gutterBottom
+                align="left"
+                sx={{ fontSize: "15px", fontWeight: "600" }}
+              >
                 Expiration Date
               </Typography>
               <TextField
@@ -106,7 +132,12 @@ const PaymentInformation = ({
               />
             </div>
             <div className="w-full">
-              <Typography variant="body1" gutterBottom align="left">
+              <Typography
+                variant="body1"
+                gutterBottom
+                align="left"
+                sx={{ fontSize: "15px", fontWeight: "600" }}
+              >
                 CVV
               </Typography>
               <TextField
@@ -140,14 +171,65 @@ const PaymentInformation = ({
           </div>
         </form>
       )}
-      {paymentType === "fonepay" && (
-        <div>
-          {/* Add fonepay form or details here */}
-          <p>Payment with fonepay is not yet implemented.</p>
-          <Button variant="contained" color="primary" onClick={onPrev}>
-            Back to Shipping
-          </Button>
-        </div>
+      {paymentMethod === "fonepay" && (
+        <form onSubmit={handleSubmit}>
+          <Typography
+            variant="body1"
+            gutterBottom
+            align="left"
+            sx={{ fontSize: "15px", fontWeight: "600" }}
+          >
+            Account Holder Name
+          </Typography>
+          <TextField
+            fullWidth
+            variant="outlined"
+            name="accountHolderName"
+            value={form.accountHolderName}
+            onChange={handleChange}
+            placeholder="Account Holder Name Name"
+            required
+            margin="none"
+            size="small"
+            sx={{ marginBottom: "12px" }}
+          />
+          <Typography
+            variant="body1"
+            gutterBottom
+            align="left"
+            sx={{ fontSize: "15px", fontWeight: "600" }}
+          >
+            Account Number
+          </Typography>
+          <TextField
+            fullWidth
+            variant="outlined"
+            name="accountNumber"
+            value={form.accountNumber}
+            onChange={handleChange}
+            placeholder="Account Number"
+            required
+            margin="none"
+            size="small"
+            sx={{ marginBottom: "12px" }}
+          />
+
+          <div className="flex justify-between">
+            <button
+              className="bg-black text-white rounded-md px-5 py-2 "
+              onClick={onPrev}
+            >
+              Back to Shipping
+            </button>
+
+            <button
+              className="bg-black text-white rounded-md px-5 py-2"
+              type="submit"
+            >
+              Review Order
+            </button>
+          </div>
+        </form>
       )}
     </div>
   );
