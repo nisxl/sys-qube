@@ -18,5 +18,5 @@ This is a React-based e-commerce checkout flow application that includes a cart 
 5. Start the Development Server
    npm run dev
 
-#Hosted on
+## Hosted on
 [SysQubeNp - Website](https://sysqubenp-store.netlify.app/) or the link: https://sysqubenp-store.netlify.app/
